@@ -3,43 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Prettiest Girl in the World</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #e0f7fa;
-        }
-        .welcome-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fbeaff;
             text-align: center;
+            padding: 20px;
         }
-        button {
-            padding: 10px 20px;
-            background-color: #2196F3;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        h1 {
+            color: #ff4081;
+            font-size: 2.5em;
+            margin-bottom: 20px;
         }
-        button:hover {
-            background-color: #1976D2;
+        .carousel {
+            width: 80%;
+            margin: auto;
+        }
+        .carousel img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
-    <img src='IMG-20250209-WA0171.jpg'>
-    <div class="welcome-container">
-        <h2>Welcome!</h2>
-        <p>You have successfully logged in.</p>
-        <button onclick="window.location.href='index.html'">Back to Login</button>
+
+    <h1>To the Prettiest Girl in the World 💖</h1>
+    <p>You light up my world with your smile, and every moment with you is a treasure. This is just a small way to celebrate your beauty and the love we share. ✨</p>
+
+    <div class="carousel">
+        <img src="IMG-20250209-WA0171.jpg" alt="Pretty Face 1">
+        <img src="IMG-20250209-WA0172.jpg" alt="Pretty Face 2">
+        <img src="IMG-20250209-WA0039.jpg" alt="Pretty Face 3">
+        <img src="IMG-20250209-WA0030.jpg" alt="Pretty Face 4">
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.carousel').slick({
+                autoplay: true,
+                autoplaySpeed: 2000,
+                dots: true,
+                arrows: false
+            });
+        });
+    </script>
+
 </body>
 </html>
+    
+    
