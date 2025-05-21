@@ -1,76 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        .login-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        input {
-            margin: 10px 0;
-            padding: 8px;
-            width: 200px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .error {
-            color: red;
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .login-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    input {
+      margin: 10px 0;
+      padding: 8px;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .error {
+      color: red;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <input type="text" id="username" placeholder="Username" required><br>
-        <input type="password" id="password" placeholder="Password" required><br>
-        <button onclick="checkLogin()">Login</button>
-        <p id="error" class="error">bud">Invalid username or password!</p>
-    </div>
+  <div class="login-container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username" required><br>
+    <input type="password" id="password" placeholder="Password" required><br>
+    <button onclick="checkLogin()">Login</button>
+    <p id="error" class="error">Invalid username or password!</p>
+  </div>
 
-    <script>
-        function checkLogin() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMsg = document.getElementById('error');
+  <script>
+    // SHA-256 hash function
+    async function hashText(text) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(text);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
 
-            // Hardcoded credentials
-            const validUsername = "mehwish";
-            const validPassword = "09022025";
+    async function checkLogin() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('error');
 
-            if (username === validUsername && password === validPassword) {
-                // Redirect to a welcome page or perform desired action
-                window.location.href = "welcome.html";
-            } else {
-                errorMsg.style.display = 'block';
-            }
-        }
-    </script>
+      // Hashed values of 'Mehwish' and '20250209'
+      const validUsernameHash = '2fa5c5828cdce0dc01fa9aa2b5ff2cc2b0d6a3083fef0d86f057d8b65ebf87d1';
+      const validPasswordHash = 'e352fa471b58bcd578dc67b5c86e1cbf77f94d46e6bcfc8d3a4372fa6f7f2432';
+
+      const enteredUsernameHash = await hashText(username);
+      const enteredPasswordHash = await hashText(password);
+
+      if (enteredUsernameHash === validUsernameHash && enteredPasswordHash === validPasswordHash) {
+        window.location.href = "welcome.html";
+      } else {
+        errorMsg.style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>
