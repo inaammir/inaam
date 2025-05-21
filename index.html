@@ -30,7 +30,7 @@
             margin-top: 10px;
         }
         input {
-            width: 100%;
+            width: 90%;
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ccc;
@@ -51,11 +51,22 @@
         }
     </style>
     <script>
-        function validateLogin() {
+        async function hashPassword(password) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+        }
+
+        async function validateLogin() {
             let username = document.getElementById("username").value;
             let password = document.getElementById("password").value;
 
-            if (username === "Mehwish" && password === "Mehwish!") {
+            const hashedPassword = await hashPassword(password);
+            const storedHashedPassword = await hashPassword("Mehwish!"); // Precomputed hash of correct password
+
+            if (username === "Mehwish" && hashedPassword === storedHashedPassword) {
                 alert("Login Successful!");
                 window.location.href = "welcome.html"; // Redirect to another page
             } else {
