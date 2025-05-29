@@ -12,12 +12,15 @@
             background-color: #fbeaff;
             text-align: center;
             padding: 20px;
+            margin: 0;
         }
+
         h1 {
             color: #ff4081;
             font-size: 2.5em;
-            margin-bottom: 20px;
+            margin: 0 0 20px 0;
         }
+
         .message {
             font-size: 1.5em;
             color: #d63384;
@@ -26,30 +29,43 @@
             padding: 15px;
             border-radius: 10px;
             display: inline-block;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
         }
+
         .carousel {
             width: 80%;
-            margin: auto;
-            margin-bottom: 30px;
+            margin: 0 auto 30px auto;
         }
+
         .carousel img {
             width: 100%;
             border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+
         .heart-container {
-            margin-top: 20px;
+            margin: 20px 0;
         }
+
         .heart {
             width: 100px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            animation: pulse 1.5s ease-in-out infinite;
         }
-        .heart:hover {
-            transform: scale(1.1);
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
+
         #heart-message {
             font-size: 1.2em;
             color: #d63384;
@@ -58,28 +74,38 @@
             padding: 10px;
             border-radius: 10px;
             display: inline-block;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             margin-top: 15px;
             opacity: 0;
             transition: opacity 0.5s ease;
         }
+
         #heart-message.show {
             opacity: 1;
         }
     </style>
 </head>
 <body>
-
     <h1>To the Prettiest Girl in the World 💖</h1>
+    <div class="message">
+        You light up my world with your smile, and every moment with you is a treasure. 
+        This is just a small way to celebrate your beauty and the love we share. ✨
+    </div>
     <div class="heart-container">
         <img src="heart.png" alt="Heart" class="heart" id="heart">
         <div id="heart-message"></div>
+    </div>
+    <div class="carousel">
+        <img src="IMG-20250209-WA0171.jpg" alt="Pretty Face 1">
+        <img src="IMG-20250209-WA0172.jpg" alt="Pretty Face 2">
+        <img src="IMG-20250210-WA0039.jpg" alt="Pretty Face 3">
+        <img src="IMG-20250210-WA0030.jpg" alt="Pretty Face 4">
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('.carousel').slick({
                 autoplay: true,
                 autoplaySpeed: 2000,
@@ -115,16 +141,5 @@
             messageDiv.classList.add('show');
         });
     </script>
-    <p>You light up my world with your smile, and every moment with you is a treasure. This is just a small way to celebrate your beauty and the love we share. ✨</p>
-
-    <div class="carousel">
-        <img src="IMG-20250209-WA0171.jpg" alt="Pretty Face 1">
-        <img src="IMG-20250209-WA0172.jpg" alt="Pretty Face 2">
-        <img src="IMG-20250210-WA0039.jpg" alt="Pretty Face 3">
-        <img src="IMG-20250210-WA0030.jpg" alt="Pretty Face 4">
-    </div>
-
-    
-
 </body>
 </html>
