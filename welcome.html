@@ -32,11 +32,39 @@
         .carousel {
             width: 80%;
             margin: auto;
+            margin-bottom: 30px;
         }
         .carousel img {
             width: 100%;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .heart-container {
+            margin-top: 20px;
+        }
+        .heart {
+            width: 100px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .heart:hover {
+            transform: scale(1.1);
+        }
+        #heart-message {
+            font-size: 1.2em;
+            color: #d63384;
+            font-style: italic;
+            background: #fff0f6;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 15px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        #heart-message.show {
+            opacity: 1;
         }
     </style>
 </head>
@@ -53,6 +81,11 @@
         <img src="IMG-20250210-WA0030.jpg" alt="Pretty Face 4">
     </div>
 
+    <div class="heart-container">
+        <img src="https://i.imgur.com/2k5W2hB.png" alt="Heart" class="heart" id="heart">
+        <div id="heart-message"></div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
@@ -63,6 +96,33 @@
                 dots: true,
                 arrows: false
             });
+        });
+
+        const messages = [
+            "Mehwish, your smile makes every day brighter.",
+            "You’re my forever, my love, my everything.",
+            "Every moment with you feels like a dream, Mehwish.",
+            "Your heart is my favorite place in the world.",
+            "Mehwish, you make love feel so effortless and beautiful.",
+            "I’m the luckiest because I have you, my darling.",
+            "Your laughter is my favorite melody, Mehwish.",
+            "You’re the spark that lights up my life every day.",
+            "Mehwish, your beauty shines inside and out.",
+            "Loving you is my greatest adventure, sweetheart.",
+            "You make every memory unforgettable, Mehwish.",
+            "Your kindness makes the world better, my love.",
+            "Mehwish, you’re my reason to smile every day.",
+            "With you, every moment is pure magic.",
+            "You’re my home, my heart, my Mehwish."
+        ];
+
+        const heart = document.getElementById('heart');
+        const messageDiv = document.getElementById('heart-message');
+
+        heart.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            messageDiv.textContent = messages[randomIndex];
+            messageDiv.classList.add('show');
         });
     </script>
 
